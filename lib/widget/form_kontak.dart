@@ -89,14 +89,15 @@ class _FormKontakState extends State<FormKontak> {
                           alamat: _alamatController.text,
                           noTelepon: _noTeleponController.text,
                           foto: _image!.path,
-                          ),
-                          _image,
-                          );
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(result['message'])),
-                          );
+                        ),
+                        _image,
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text(result['message'])),
+                      );
                     }
                   },
-                  child: null,
+                  child: const Text("Simpan"),
                 ),
               )
             ],
