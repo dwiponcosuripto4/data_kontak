@@ -39,68 +39,74 @@ class _FormKontakState extends State<FormKontak> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Center(child: Text('Input Data Kontak'))),
-        key: _formKey,
         body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                margin: const EdgeInsets.all(10),
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                      labelText: "Nama", hintText: "Masukkan nama"),
-                  controller: _namaController,
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.all(10),
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                        labelText: "Nama", hintText: "Masukkan nama"),
+                    controller: _namaController,
+                  ),
                 ),
-              ),
-              Container(
-                margin: const EdgeInsets.all(10),
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                      labelText: "Email", hintText: "Masukkan email"),
-                  controller: _emailController,
+                Container(
+                  margin: const EdgeInsets.all(10),
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                        labelText: "Email", hintText: "Masukkan email"),
+                    controller: _emailController,
+                  ),
                 ),
-              ),
-              Container(
-                margin: const EdgeInsets.all(10),
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                      labelText: "Alamat", hintText: "Masukkan alamat"),
-                  controller: _alamatController,
+                Container(
+                  margin: const EdgeInsets.all(10),
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                        labelText: "Alamat", hintText: "Masukkan alamat"),
+                    controller: _alamatController,
+                  ),
                 ),
-              ),
-              Container(
-                margin: const EdgeInsets.all(10),
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                      labelText: "No Telepon", hintText: "Masukkan No Telepon"),
-                  controller: _noTeleponController,
+                Container(
+                  margin: const EdgeInsets.all(10),
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                        labelText: "No Telepon",
+                        hintText: "Masukkan No Telepon"),
+                    controller: _noTeleponController,
+                  ),
                 ),
-              ),
-              ElevatedButton(
-                  onPressed: getImage, child: const Text('Pilih Gambar')),
-              Container(
-                margin: const EdgeInsets.all(10),
-                child: ElevatedButton(
-                  onPressed: () async {
-                    if (_formKey.currentState!.validate()) {
-                      var result = await KontakController().addPerson(
-                        Kontak(
-                          nama: _namaController.text,
-                          email: _emailController.text,
-                          alamat: _alamatController.text,
-                          noTelepon: _noTeleponController.text,
-                          foto: _image!.path,
-                        ),
-                        _image,
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(result['message'])),
-                      );
-                    }
-                  },
-                  child: const Text("Simpan"),
-                ),
-              )
-            ],
+                _image == null
+                    ? Text('Tidak ada gambar yang dipilih.')
+                    : Image.file(_image!),
+                ElevatedButton(
+                    onPressed: getImage, child: const Text('Pilih Gambar')),
+                Container(
+                  margin: const EdgeInsets.all(10),
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        var result = await KontakController().addPerson(
+                          Kontak(
+                            nama: _namaController.text,
+                            email: _emailController.text,
+                            alamat: _alamatController.text,
+                            noTelepon: _noTeleponController.text,
+                            foto: _image!.path,
+                          ),
+                          _image,
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text(result['message'])),
+                        );
+                      }
+                    },
+                    child: const Text("Simpan"),
+                  ),
+                )
+              ],
+            ),
           ),
         ));
   }
