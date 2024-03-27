@@ -20,7 +20,19 @@ class _FormKontakState extends State<FormKontak> {
   final _emailController = TextEditingController();
   final _noTeleponController = TextEditingController();
 
-  
+  Future<void> getImage() async {
+    final XFile? pickedFile =
+        await _imagePicker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected');
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
