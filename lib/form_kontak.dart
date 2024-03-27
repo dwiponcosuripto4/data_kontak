@@ -46,7 +46,7 @@ class _FormKontakState extends State<FormKontak> {
                 child: TextFormField(
                   decoration: const InputDecoration(
                       labelText: "Nama", hintText: "Masukkan nama"),
-                    controller: _namaController,
+                  controller: _namaController,
                 ),
               ),
               Container(
@@ -54,7 +54,7 @@ class _FormKontakState extends State<FormKontak> {
                 child: TextFormField(
                   decoration: const InputDecoration(
                       labelText: "Email", hintText: "Masukkan email"),
-                    controller: _emailController,
+                  controller: _emailController,
                 ),
               ),
               Container(
@@ -62,7 +62,7 @@ class _FormKontakState extends State<FormKontak> {
                 child: TextFormField(
                   decoration: const InputDecoration(
                       labelText: "Alamat", hintText: "Masukkan alamat"),
-                    controller: _alamatController,
+                  controller: _alamatController,
                 ),
               ),
               Container(
@@ -70,10 +70,11 @@ class _FormKontakState extends State<FormKontak> {
                 child: TextFormField(
                   decoration: const InputDecoration(
                       labelText: "No Telepon", hintText: "Masukkan No Telepon"),
-                    controller: _noTeleponController,
+                  controller: _noTeleponController,
                 ),
               ),
-              ElevatedButton(onPressed: () {}, child: Text('Pilih Gambar'))
+              ElevatedButton(
+                  onPressed: getImage, child: const Text('Pilih Gambar'))
             ],
           ),
         ));
