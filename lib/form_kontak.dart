@@ -74,7 +74,16 @@ class _FormKontakState extends State<FormKontak> {
                 ),
               ),
               ElevatedButton(
-                  onPressed: getImage, child: const Text('Pilih Gambar'))
+                  onPressed: getImage, child: const Text('Pilih Gambar')),
+              Container(
+                margin: const EdgeInsets.all(10),
+                child: ElevatedButton(
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate()) {}
+                  },
+                  child: null,
+                ),
+              )
             ],
           ),
         ));
