@@ -37,35 +37,40 @@ class _FormKontakState extends State<FormKontak> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Center(child: Text('Input Data Kontak'))),
+        key: _formKey,
         body: SingleChildScrollView(
           child: Column(
             children: [
               Container(
-                margin: EdgeInsets.all(10),
+                margin: const EdgeInsets.all(10),
                 child: TextFormField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       labelText: "Nama", hintText: "Masukkan nama"),
+                    controller: _namaController,
                 ),
               ),
               Container(
-                margin: EdgeInsets.all(10),
+                margin: const EdgeInsets.all(10),
                 child: TextFormField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       labelText: "Email", hintText: "Masukkan email"),
+                    controller: _emailController,
                 ),
               ),
               Container(
-                margin: EdgeInsets.all(10),
+                margin: const EdgeInsets.all(10),
                 child: TextFormField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       labelText: "Alamat", hintText: "Masukkan alamat"),
+                    controller: _alamatController,
                 ),
               ),
               Container(
-                margin: EdgeInsets.all(10),
+                margin: const EdgeInsets.all(10),
                 child: TextFormField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       labelText: "No Telepon", hintText: "Masukkan No Telepon"),
+                    controller: _noTeleponController,
                 ),
               ),
               ElevatedButton(onPressed: () {}, child: Text('Pilih Gambar'))
