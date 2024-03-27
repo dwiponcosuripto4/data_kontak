@@ -9,6 +9,6 @@ class KontakService {
   Uri getUri(String path) {
     return Uri.parse("$baseUrl$path");
   }
-
+  
   
 }
