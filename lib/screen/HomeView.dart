@@ -1,5 +1,6 @@
 import 'package:data_kontak/controller/KontakController.dart';
 import 'package:data_kontak/model/Person.dart';
+import 'package:data_kontak/widget/form_kontak.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {
@@ -47,6 +48,15 @@ class _HomeViewState extends State<HomeView> {
             );
           }
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const FormKontak()),
+          );
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }
