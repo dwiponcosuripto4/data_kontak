@@ -87,16 +87,19 @@ class _FormKontakState extends State<FormKontak> {
                   child: ElevatedButton(
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        var result = await KontakController().addPerson(
-                          Kontak(
+                        _formKey.currentState!.save();
+                        Kontak _person = Kontak(
                             nama: _namaController.text,
                             email: _emailController.text,
                             alamat: _alamatController.text,
                             noTelepon: _noTeleponController.text,
                             foto: _image!.path,
-                          ),
+                          );
+                        var result = await KontakController().addPerson(
+                          _person,
                           _image,
                         );
+
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text(result['message'])),
                         );
