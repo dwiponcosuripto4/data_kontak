@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:data_kontak/model/kontak.dart';
 import 'package:data_kontak/controller/KontakController.dart';
+import 'package:data_kontak/screen/HomeView.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -89,12 +90,12 @@ class _FormKontakState extends State<FormKontak> {
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
                         Kontak _person = Kontak(
-                            nama: _namaController.text,
-                            email: _emailController.text,
-                            alamat: _alamatController.text,
-                            noTelepon: _noTeleponController.text,
-                            foto: _image!.path,
-                          );
+                          nama: _namaController.text,
+                          email: _emailController.text,
+                          alamat: _alamatController.text,
+                          noTelepon: _noTeleponController.text,
+                          foto: _image!.path,
+                        );
                         var result = await KontakController().addPerson(
                           _person,
                           _image,
@@ -102,6 +103,12 @@ class _FormKontakState extends State<FormKontak> {
 
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text(result['message'])),
+                        );
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const HomeView()),
+                          (route) => false,
                         );
                       }
                     },
