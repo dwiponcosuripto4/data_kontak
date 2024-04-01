@@ -1,16 +1,6 @@
-# data_kontak
+# 1. Home View
 
-A new Flutter project.
+![Screenshot 2024-04-01 185728](https://github.com/dwiponcosuripto4/data_kontak/assets/115076093/cfc63e09-59d5-490a-b951-4e496c4e05ad)
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# 2. Register
+![Screenshot 2024-04-01 190003](https://github.com/dwiponcosuripto4/data_kontak/assets/115076093/bc00ee1f-049e-489c-8838-6308148fae8f)
