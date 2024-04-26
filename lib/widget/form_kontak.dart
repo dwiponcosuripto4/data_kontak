@@ -16,6 +16,7 @@ class FormKontak extends StatefulWidget {
 class _FormKontakState extends State<FormKontak> {
   File? _image;
   final _imagePicker = ImagePicker();
+  String? _alamat;
 
   final _formKey = GlobalKey<FormState>();
   final _namaController = TextEditingController();
@@ -62,11 +63,18 @@ class _FormKontakState extends State<FormKontak> {
                   ),
                 ),
                 Container(
-                  margin: const EdgeInsets.all(10),
-                  child: TextFormField(
-                    decoration: const InputDecoration(
-                        labelText: "Alamat", hintText: "Masukkan alamat"),
-                    controller: _alamatController,
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text("Alamat"),
+                      _alamat == null
+                          ? const SizedBox(
+                              width: double.infinity,
+                              child: Text('Alamat kosong'))
+                          : Text('$_alamat')
+                    ],
                   ),
                 ),
                 Container(
