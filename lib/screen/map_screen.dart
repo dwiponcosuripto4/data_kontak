@@ -26,6 +26,13 @@ class _MapScreenState extends State<MapScreen> {
         .onError((error, stackTrace) async {
       await Geolocator.requestPermission();
     });
+
+    var position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    setState(() {
+      _lastMapPosition = LatLng(position.latitude, position.longitude!)
+    });
+    mapController.animateCamera(CameraUpdate.newLatLng(_lastMapPosition!));
   }
 
   @override
