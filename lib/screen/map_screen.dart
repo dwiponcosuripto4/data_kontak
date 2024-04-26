@@ -31,7 +31,7 @@ class _MapScreenState extends State<MapScreen> {
     var position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
     setState(() {
-      _lastMapPosition = LatLng(position.latitude, position.longitude!)
+      _lastMapPosition = LatLng(position.latitude, position.longitude!);
     });
     mapController.animateCamera(CameraUpdate.newLatLng(_lastMapPosition!));
   }
@@ -59,19 +59,18 @@ class _MapScreenState extends State<MapScreen> {
         zoomControlsEnabled: true,
         rotateGesturesEnabled: true,
         mapToolbarEnabled: true,
-
         compassEnabled: true,
         onMapCreated: _onMapCreated,
-
         initialCameraPosition: CameraPosition(
           target: _lastMapPosition ?? const LatLng(0.0, 0.0),
           zoom: 20.0,
         ),
         markers: {
           if (_lastMapPosition != null)
-          Marker(markerId: const MarkerId('currentLocation'),
-          position: _lastMapPosition!,
-          )
+            Marker(
+              markerId: const MarkerId('currentLocation'),
+              position: _lastMapPosition!,
+            )
         },
         onTap: (position) {
           setState(() {
@@ -87,13 +86,10 @@ class _MapScreenState extends State<MapScreen> {
             onPressed: () async {
               if (_lastMapPosition != null) {
                 List<Placemark> placemarks = await placemarkFromCoordinates(
-                  _lastMapPosition!.latitude, 
-                  _lastMapPosition!.longitude
-                  );
+                    _lastMapPosition!.latitude, _lastMapPosition!.longitude);
                 if (placemarks.isNotEmpty) {
-                  Placemark place = 
-                    placemarks[0];
-                  String fullAddress = 
+                  Placemark place = placemarks[0];
+                  String fullAddress =
                       " ${place.name}, ${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}";
                   widget.onLocationSelected(fullAddress);
                 } else {
@@ -101,8 +97,8 @@ class _MapScreenState extends State<MapScreen> {
                 }
                 Navigator.pop(context);
               }
-          },
-          child: const Text('Submit'),
+            },
+            child: const Text('Submit'),
           )
         ],
       ),
