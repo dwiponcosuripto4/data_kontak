@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:data_kontak/model/kontak.dart';
 import 'package:data_kontak/controller/KontakController.dart';
 import 'package:data_kontak/screen/HomeView.dart';
+import 'package:data_kontak/screen/map_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -73,7 +74,39 @@ class _FormKontakState extends State<FormKontak> {
                           ? const SizedBox(
                               width: double.infinity,
                               child: Text('Alamat kosong'))
-                          : Text('$_alamat')
+                          : Text('$_alamat'),
+                      _alamat == null
+                          ? TextButton(
+                              onPressed: () async {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => MapScreen(
+                                                onLocationSelected:
+                                                    (selectedAddress) {
+                                              setState(() {
+                                                _alamat = selectedAddress;
+                                              });
+                                            })));
+                              },
+                              child: const Text('Pilih Alamat'),
+                            )
+                          : TextButton(
+                              onPressed: () async {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => MapScreen(
+                                                onLocationSelected:
+                                                    (selectedAddress) {
+                                              setState(() {
+                                                _alamat = selectedAddress;
+                                              });
+                                            })));
+                                setState(() {});
+                              },
+                              child: const Text('Ubah Alamat'),
+                            ),
                     ],
                   ),
                 ),
@@ -100,7 +133,7 @@ class _FormKontakState extends State<FormKontak> {
                         Kontak _person = Kontak(
                           nama: _namaController.text,
                           email: _emailController.text,
-                          alamat: _alamatController.text,
+                          alamat: _alamat ?? '',
                           noTelepon: _noTeleponController.text,
                           foto: _image!.path,
                         );
