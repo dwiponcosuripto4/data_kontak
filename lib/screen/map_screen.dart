@@ -46,6 +46,38 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Selected Location"),
+      ),
+      body: GoogleMap(
+        myLocationEnabled: true,
+        myLocationButtonEnabled: true,
+        buildingsEnabled: true,
+        trafficEnabled: true,
+        zoomControlsEnabled: true,
+        rotateGesturesEnabled: true,
+        mapToolbarEnabled: true,
+
+        compassEnabled: true,
+        onMapCreated: _onMapCreated,
+
+        initialCameraPosition: CameraPosition(
+          target: _lastMapPosition ?? const LatLng(0.0, 0.0),
+          zoom: 20.0,
+        ),
+        markers: {
+          if (_lastMapPosition != null)
+          Marker(markerId: const MarkerId('currentLocation'),
+          position: _lastMapPosition!,
+          )
+        },
+        onTap: (position) {
+          setState(() {
+            _lastMapPosition = position;
+          });
+        },
+      ),
+    );
   }
 }
