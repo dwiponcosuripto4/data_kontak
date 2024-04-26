@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapScreen extends StatefulWidget {
   final Function(String) onLocationSelected;
@@ -9,6 +10,9 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
+  late GoogleMapController mapController;
+  LatLng? _lastMapPosition;
+
   @override
   Widget build(BuildContext context) {
     return Container();
