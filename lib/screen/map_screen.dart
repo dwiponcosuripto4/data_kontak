@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -77,6 +78,33 @@ class _MapScreenState extends State<MapScreen> {
             _lastMapPosition = position;
           });
         },
+      ),
+      floatingActionButton: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FloatingActionButton(
+            onPressed: () async {
+              if (_lastMapPosition != null) {
+                List<Placemark> placemarks = await placemarkFromCoordinates(
+                  _lastMapPosition!.latitude, 
+                  _lastMapPosition!.longitude
+                  );
+                if (placemarks.isNotEmpty) {
+                  Placemark place = 
+                    placemarks[0];
+                  String fullAddress = 
+                      " ${place.name}, ${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}";
+                  widget.onLocationSelected(fullAddress);
+                } else {
+                  widget.onLocationSelected("No address found");
+                }
+                Navigator.pop(context);
+              }
+          },
+          child: const Text('Submit'),
+          )
+        ],
       ),
     );
   }
